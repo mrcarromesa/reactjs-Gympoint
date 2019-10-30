@@ -20,14 +20,14 @@ Desafio 2: Gympoint
 A aplicação de gerenciador de academia, o **Gympoint**.
 
 
-## Criar aplicação 
+## Criar aplicação
 executar no terminal:
 ```
 yarn init -y
 ```
 *Irá criar o arquivo package.json*
 > O arquivo package.json contém todas as dependências
-> quando tiver tudo declarado e alguem precisar executar, baixar as dependencias, 
+> quando tiver tudo declarado e alguem precisar executar, baixar as dependencias,
 > utilizar o unico comando:
 ```
 yarn
@@ -39,7 +39,7 @@ yarn add express
 ```
 **O framework do express, fornece mecanismo para:**
 * Gerencia as requisições de diferentes requisições e rotas e URLs.
-* Definir as configurações comuns da aplicação web, como a porta a ser usada para conexão e a localização 
+* Definir as configurações comuns da aplicação web, como a porta a ser usada para conexão e a localização
 dos modelos que são usados para renderizar a resposta.
 * Adicionar em qualquer ponto da requisição um "middleware" para interceptar processar ou pré-processar
 e tratamentar à mesma.
@@ -55,8 +55,8 @@ server.listen(3333); //porta onde irá executar a aplicação node
 ```
 yarn add nodemon -D
 ```
-** -D adicionar apenas em modo de desenvolvimento ** 
-> O nodemon fica monitorando as modificações e reinicia o servidor node 
+** -D adicionar apenas em modo de desenvolvimento **
+> O nodemon fica monitorando as modificações e reinicia o servidor node
 ---
 
 ## Sucrase
@@ -99,7 +99,7 @@ yarn add sucrase -D
 {
 	"dev": "nodemon src/server.js",
 	"dev:debug": "nodemon --inspect src/server.js"
-} 
+}
 ```
 
 4. Para ativar o modo debug com o sucrase no vscode:
@@ -152,7 +152,7 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 ```
----- 
+----
 
 ## Eslint e Prettier
 >Realiza correções autómaticas do código
@@ -190,12 +190,12 @@ yarn eslint --init
 
 e. definir:
 * To check syntax, find problems, and enforce code style
-* JavaScript modules (import/export) 
+* JavaScript modules (import/export)
 * None of these
 * Node
 * Use a popular style guide
-* Airbnb (https://github.com/airbnb/javascript) 
-* JavaScript 
+* Airbnb (https://github.com/airbnb/javascript)
+* JavaScript
 * Yes
 
 d. Será instalado via npm e criado o arquivo package.json.lock, deve remover o arquivo package.json.lock e executar o comando:
@@ -217,7 +217,7 @@ g. no arquivo: .eslint.js na chave rules adicionar o seguinte:
 }
 ```
 h. No arquivo: .eslint.js na chave extends add: 'prettier'
-e adicionar uma nova chave "plugins": 
+e adicionar uma nova chave "plugins":
 ```javascript
 extends: [
 	'airbnb-base',
@@ -300,7 +300,7 @@ docker stop <nome do docker>
 
 * Mostrar todos os docker mesmo os que estão parados
 ```
-docker ps -a 
+docker ps -a
 ```
 
 * Mostrar apenas os docker em execução
@@ -486,8 +486,8 @@ Pastas:
 		* middlewares
 		* models
 	* config
-	* database 
-		* migrations   
+	* database
+		* migrations
 
 ---
 
@@ -517,3 +517,50 @@ if (!(await schema.isValid(req.body))) {
     return res.status(400).json({ error: 'Validations fails' });
 }
 ```
+
+## Multer
+>Trabalha com o content-type: multipart e enviar arquivos**
+**Instalação**
+```js
+yarn add multer
+```
+
+## Biblioteca de datas nodejs
+
+**Instalação**
+```
+yarn add date-fns@next
+```
+
+**Uso**
+
+```js
+import { startOfHour, parseISO, isBefore } from 'date-fns';
+//...
+/**
+* Check for past dates
+*/
+const hourStart = startOfHour(parseISO(date));
+if (isBefore(hourStart, new Date())) {
+    return res
+        .status(400)
+        .json({ error: 'Past date are not permitted' });
+}
+```
+
+## Docker + Mongo
+
+**Instalação**
+
+```
+docker run --name barbermongo -p 27017:27017 -d -t mongo
+```
+>-t is short for--tty
+> Allocates a pseudo terminal that connects your terminal with the container’s STDIN and STDOUT.
+
+>-d is short for --detach. Run the container in the background. Allows you to use the terminal for other commands while your container runs.
+
+>-p is short for --port. The port is the interface with the outside world.1000:8000 maps the Docker port 8000 to port 1000 on your machine. If you had an app that output something to the browser you could then navigate your browser to localhost:1000 and see it.
+
+**Mais informações sobre comandos Docker:**
+[Links 15 Docker Commands You Should Know](https://towardsdatascience.com/15-docker-commands-you-should-know-970ea5203421 "15 Docker Commands You Should Know")
